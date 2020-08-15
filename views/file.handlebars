@@ -1,12 +1,16 @@
 <div id="editor" style="height:900px;width:100%;">
-	{{content}}
+	{{{content}}}
 </div>
 <script src="https://pagecdn.io/lib/ace/1.4.12/ace.min.js"></script>
+<script src="https://pagecdn.io/lib/ace/1.4.12/ext-modelist.js"></script>
 <script>
 	ace.config.set('basePath', 'https://pagecdn.io/lib/ace/1.4.12/');
 	var editor = ace.edit("editor");
   editor.setTheme("ace/theme/monokai");
-  editor.session.setMode("ace/mode/javascript");
+	var modelist = ace.require("ace/ext/modelist");
+	var filePath = window.location.href.replace("http://", "").replace("https://", "").split("/")[1];
+	var mode = modelist.getModeForPath(filePath).mode;
+	editor.session.setMode(mode);
 </script>
 <hr />
 <p>{{!-- Add any important editor information here. --}}</p>

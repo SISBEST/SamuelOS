@@ -3,4 +3,10 @@
 	{{#each files}}
 		<li><a href="/{{this}}/?pass={{../pass}}">{{this}}</a></li>
 	{{/each}}
+	<hr />
+	<form action="/api/create">
+		<input type="hidden" name="pass" value="{{pass}}" />
+		<input name="filename" placeholder="Create a file..." />
+		<input type="submit" />
+	</form>
 </ul>
