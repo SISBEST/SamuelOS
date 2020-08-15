@@ -1,0 +1,6 @@
+<h2>Welcome!</h2>
+<ul>
+	{{#each files}}
+		<li><a href="/{{this}}/?pass={{../pass}}">{{this}}</a></li>
+	{{/each}}
+</ul>

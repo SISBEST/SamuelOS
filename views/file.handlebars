@@ -1,0 +1,13 @@
+<div id="editor" style="height:900px;width:100%;">
+	{{content}}
+</div>
+<script src="https://pagecdn.io/lib/ace/1.4.12/ace.min.js"></script>
+<script>
+	ace.config.set('basePath', 'https://pagecdn.io/lib/ace/1.4.12/');
+	var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.session.setMode("ace/mode/javascript");
+</script>
+<hr />
+<p>{{!-- Add any important editor information here. --}}</p>
+<a href="/?pass={{pass}}">Back</a>
