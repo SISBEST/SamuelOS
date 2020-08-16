@@ -1,4 +1,14 @@
-<div id="editor" style="height:900px;width:100%;">
+<style>
+	#editor {
+		height: 100vh;
+		width: 100vw%;
+		border: none;
+	}
+	body {
+		overflow: hidden;
+	}
+</style>
+<div id="editor">
 	{{{content}}}
 </div>
 <script src="https://pagecdn.io/lib/ace/1.4.12/ace.min.js"></script>
@@ -18,10 +28,9 @@
 		}).then(function(response) {
 			return response.text();
 		}).then(function(data) {
-			console.log(data);
+			if (data !== "OK") {
+				alert("An error occured while saving your file. Copy your work and try again.");
+			}
 		});
 	}, 5000);
 </script>
-<hr />
-<p>{{!-- Add any important editor information here. --}}</p>
-<a href="/?pass={{pass}}">Back</a>

@@ -10,12 +10,16 @@ const fs = require('fs');
 
 app.get('/', (req, res) => {
 	if(req.query.pass == process.env.PASS) {
-		fs.readdir('filesystem', (err, files) => {
+		fs.readFile('filesystem/osconfig.json', 'utf8', (err, data) => {
+			var config = JSON.parse(data);
+			fs.readdir('filesystem', (err, files) => {
   		res.render('home', {
-				files: files,
-				pass: process.env.PASS
+					files: files,
+					pass: process.env.PASS,
+					wallpaper: config.wallpaper
+				});
 			});
-		});
+			});
 	} else {
 		res.render('noauth');
 	}
@@ -25,12 +29,9 @@ app.get('/api/create', (req, res) => {
 	if(req.query.pass == process.env.PASS) {
 		fs.writeFile('filesystem/' + req.query.filename, '', (err) => {
 			if (err) {
-				res.render('error', {
-					error: err,
-					pass: process.env.PASS
-				});
+				res.status(500).send(err);
 			} else {
-				res.redirect('/' + req.query.filename + '/?pass=' + process.env.PASS);
+				res.redirect('/?pass=' + process.env.PASS);
 			}
 		});
 	} else {

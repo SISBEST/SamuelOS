@@ -1,7 +1,16 @@
+<style>
+	body {
+		background-image: url('{{wallpaper}}');
+		background-repeat: no-repeat;
+  	background-size: 100vw 100vh;
+	}
+</style>
+<h1>SamuelOS</h1>
+<hr />
 <h2>Welcome!</h2>
 <ul>
 	{{#each files}}
-		<li><a href="/{{this}}/?pass={{../pass}}">{{this}}</a></li>
+		<li><img src="/file.svg" /> <a ondblclick="window.open('/{{this}}/?pass={{../pass}}', 'SamuelOS - {{this}}', 'width=800px,height=720px');">{{this}}</a></li>
 	{{/each}}
 	<hr />
 	<form action="/api/create">
@@ -10,3 +19,5 @@
 		<input type="submit" />
 	</form>
 </ul>
+<hr />
+<p>Powered by SamuelOS</p>
