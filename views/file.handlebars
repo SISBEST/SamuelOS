@@ -11,6 +11,16 @@
 	var filePath = window.location.href.replace("http://", "").replace("https://", "").split("/")[1];
 	var mode = modelist.getModeForPath(filePath).mode;
 	editor.session.setMode(mode);
+	setInterval(function() {
+		fetch('/api/edit?filename=' + window.location.href.replace("http://samuelos.samuelblue.repl.co/", "").replace("https://samuelos.samuelblue.repl.co/", "").split("/")[0] + '&pass={{pass}}', {
+			method: 'post',
+			body: editor.getValue()
+		}).then(function(response) {
+			return response.text();
+		}).then(function(data) {
+			console.log(data);
+		});
+	}, 5000);
 </script>
 <hr />
 <p>{{!-- Add any important editor information here. --}}</p>

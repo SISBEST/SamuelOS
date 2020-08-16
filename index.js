@@ -1,9 +1,11 @@
 const express = require('express');
 var exphbs = require('express-handlebars');
+var bodyParser = require('body-parser');
 const app = express();
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use(express.static('static'));
+app.use(bodyParser.text());
 const fs = require('fs');
 
 app.get('/', (req, res) => {
@@ -33,6 +35,20 @@ app.get('/api/create', (req, res) => {
 		});
 	} else {
 		res.render('noauth');
+	}
+});
+
+app.post('/api/edit', (req, res) => {
+	if (req.query.pass == process.env.PASS) {
+		fs.writeFile('filesystem/' + req.query.filename, req.body, (err) => {
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.send("OK");
+			}
+		});
+	} else {
+		res.status(401).send('AUTH MISSING');
 	}
 });
 
