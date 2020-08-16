@@ -1,23 +1,30 @@
 <style>
 	body {
 		background-image: url('{{wallpaper}}');
-		background-repeat: no-repeat;
-  	background-size: 100vw 100vh;
 	}
 </style>
 <h1>SamuelOS</h1>
 <hr />
-<h2>Welcome!</h2>
-<ul>
-	{{#each files}}
-		<li><img src="/file.svg" /> <a ondblclick="window.open('/{{this}}/?pass={{../pass}}', 'SamuelOS - {{this}}', 'width=800px,height=720px');">{{this}}</a></li>
-	{{/each}}
-	<hr />
-	<form action="/api/create">
-		<input type="hidden" name="pass" value="{{pass}}" />
-		<input name="filename" placeholder="Create a file..." />
-		<input type="submit" />
-	</form>
-</ul>
+<br />
+<img src="/file.svg" />
+{{#each files}}
+	<a class="ic" ondblclick="window.open('/{{this}}/?pass={{../pass}}', 'SamuelOS - {{this}}', 'width=800px,height=720px');">{{this}}</a>
+{{/each}}
+<br /><br />
+<img src="/app.svg" />
+{{#each apps}}
+<a class="ic" ondblclick="window.open('/app/{{this.pkg}}?pass={{../pass}}', 'SamuelOS - {{this.name}}', 'width=800px,height=720px');">{{this.name}}</a>
+{{/each}}
+<br /><br />
+<img src="/game.svg" />
+{{#each games}}
+<a class="ic" ondblclick="window.open('/app/{{this.pkg}}?pass={{../pass}}', 'SamuelOS - {{this.name}}', 'width=800px,height=720px');">{{this.name}}</a>
+{{/each}}
+<br /><br />
+<form action="/api/create">
+	<input type="hidden" name="pass" value="{{pass}}" />
+	<input name="filename" placeholder="Create a file..." />
+	<input type="submit" />
+</form>
+<br />
 <hr />
-<p>Powered by SamuelOS</p>

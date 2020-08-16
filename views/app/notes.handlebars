@@ -1,0 +1,14 @@
+<div id="editor">
+	Notes
+</div>
+<script src="https://pagecdn.io/lib/ace/1.4.12/ace.min.js"></script>
+<script>
+	ace.config.set('basePath', 'https://pagecdn.io/lib/ace/1.4.12/');
+	var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+	editor.session.setMode("ace/mode/text");
+	editor.setValue(localStorage.getItem('notes') || "Take notes here...");
+	setInterval(function() {
+		localStorage.setItem('notes', editor.getValue());
+	}, 1000);
+</script>

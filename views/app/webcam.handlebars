@@ -1,0 +1,11 @@
+<video id="player" autoplay></video>
+<script>
+  const player = document.querySelector('video');
+  const constraints = {
+    video: true,
+  };
+  navigator.mediaDevices.getUserMedia(constraints)
+    .then((stream) => {
+      player.srcObject = stream;
+    });
+</script>

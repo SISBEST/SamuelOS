@@ -1,7 +1,44 @@
-/* Adjust the properties here to your liking. But please be aware that these do not affect the editor. */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 
 body {
 	background-color: black;
 	color: #f9461c;
 	text-align: center;
+	background-repeat: no-repeat;
+  background-size: 100vw 100vh;
+}
+
+a.ic {
+	background-color: black;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+p.attr {
+	background-color: #00a1de;
+	color: black;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+::selection {
+	background-color: transparent;
+}
+
+* {
+	cursor: default;
+	font-family: 'Poppins', sans-serif;
+}
+
+input {
+	background-color: black;
+	color: white;
+	opacity: 100%;
+	border: none;
+	border-radius: 5px;
+}
+
+input::placeholder {
+	color: white;
+	opacity: 80%;
 }
