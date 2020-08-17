@@ -26,5 +26,9 @@
 	<input name="filename" placeholder="Create a file..." />
 	<input type="submit" />
 </form>
+<form action="/api/upload?pass={{pass}}" method="post" enctype="multipart/form-data">
+  <input type="file" name="file" />
+  <input type="submit" />
+</form>
 <br />
 <hr />

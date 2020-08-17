@@ -31,6 +31,10 @@
 		{
 			"name": "Tzared",
 			"pkg": "tzared"
+		},
+		{
+			"name": "Shapez.io",
+			"pkg": "shapez"
 		}
 	]
 }
