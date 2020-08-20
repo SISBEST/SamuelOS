@@ -1,6 +1,7 @@
 {
   "wallpaper": "https://images.unsplash.com/photo-1530435622277-39544076a5f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format",
 	"loginscreen": "https://images.unsplash.com/photo-1589618770139-043ba3b30542?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format",
+	"theme": "monokai",
 	"apps": [
 		{
 			"name": "Webcam",
@@ -17,6 +18,10 @@
 		{
 			"name": "Public",
 			"pkg": "host"
+		},
+		{
+			"name": "Beach Cam",
+			"pkg": "beach"
 		}
 	],
 	"games": [
@@ -29,12 +34,8 @@
 			"pkg": "train"
 		},
 		{
-			"name": "Tzared",
-			"pkg": "tzared"
-		},
-		{
-			"name": "Shapez.io",
-			"pkg": "shapez"
+			"name": "Hill Rollr 3d",
+			"pkg": "roll"
 		}
 	]
 }

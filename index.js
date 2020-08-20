@@ -120,12 +120,14 @@ app.get('/:file', (req, res) => {
 				res.render('file', {
 					content: err,
 					pass: process.env.PASS,
+					theme: require('./filesystem/osconfig.json').theme || 'monokai',
 					layout: 'editor'
 				});
 			} else {
 				res.render('file', {
 					content: data,
 					pass: process.env.PASS,
+					theme: require('./filesystem/osconfig.json').theme || 'monokai',
 					layout: 'editor'
 				});
 			}

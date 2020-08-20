@@ -22,12 +22,12 @@
 {{/each}}
 <br /><br />
 <form action="/api/create">
-	<input type="hidden" name="pass" value="{{pass}}" />
+	<input type="hidden" name="pass" value="{{pass}}" required />
 	<input name="filename" placeholder="Create a file..." />
 	<input type="submit" />
 </form>
 <form action="/api/upload?pass={{pass}}" method="post" enctype="multipart/form-data">
-  <input type="file" name="file" />
+  <input type="file" name="file" required />
   <input type="submit" />
 </form>
 <br />
