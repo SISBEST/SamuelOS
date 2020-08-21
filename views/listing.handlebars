@@ -1,0 +1,15 @@
+<h1>/{{folder}}</h1>
+{{#each files}}
+	<a class="ic" ondblclick="window.open('/{{../folder}}/{{this}}/?pass={{../pass}}', 'SamuelOS - {{this}}', 'width=800px,height=720px');">{{this}}</a>
+{{/each}}
+<br /><br />
+<form action="/api/create">
+	<input type="hidden" name="pass" value="{{pass}}" />
+	<input type="hidden" name="folder" value="{{folder}}" />
+	<input name="filename" placeholder="Create a file..." required />
+	<input type="submit" style="color:black;" />
+</form>
+<form action="/api/upload?pass={{pass}}&folder={{folder}}" method="post" enctype="multipart/form-data">
+  <input type="file" name="file" required />
+  <input type="submit" />
+</form>

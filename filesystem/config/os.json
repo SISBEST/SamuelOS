@@ -14,14 +14,6 @@
 		{
 			"name": "Timer",
 			"pkg": "timer"
-		},
-		{
-			"name": "Public",
-			"pkg": "host"
-		},
-		{
-			"name": "Beach Cam",
-			"pkg": "beach"
 		}
 	],
 	"games": [

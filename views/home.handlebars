@@ -8,7 +8,7 @@
 <br />
 <img src="/file.svg" />
 {{#each files}}
-	<a class="ic" ondblclick="window.open('/{{this}}/?pass={{../pass}}', 'SamuelOS - {{this}}', 'width=800px,height=720px');">{{this}}</a>
+	<a class="ic" ondblclick="window.open('/folder/{{this}}/?pass={{../pass}}', 'SamuelOS - {{this}}', 'width=800px,height=720px');">{{this}}</a>
 {{/each}}
 <br /><br />
 <img src="/app.svg" />
@@ -21,14 +21,10 @@
 <a class="ic" ondblclick="window.open('/app/{{this.pkg}}?pass={{../pass}}', 'SamuelOS - {{this.name}}', 'width=800px,height=720px');">{{this.name}}</a>
 {{/each}}
 <br /><br />
-<form action="/api/create">
-	<input type="hidden" name="pass" value="{{pass}}" required />
-	<input name="filename" placeholder="Create a file..." />
+<form action="/api/folder">
+	<input type="hidden" name="pass" value="{{pass}}" />
+	<input name="folder" placeholder="Create a folder..." required />
 	<input type="submit" />
-</form>
-<form action="/api/upload?pass={{pass}}" method="post" enctype="multipart/form-data">
-  <input type="file" name="file" required />
-  <input type="submit" />
 </form>
 <br />
 <hr />

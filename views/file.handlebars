@@ -8,11 +8,12 @@
 	var editor = ace.edit("editor");
   editor.setTheme("ace/theme/{{theme}}");
 	var modelist = ace.require("ace/ext/modelist");
-	var filePath = window.location.href.replace("http://", "").replace("https://", "").split("/")[1];
+	var folderPath = window.location.href.replace("http://", "").replace("https://", "").split("/")[1];
+	var filePath = window.location.href.replace("http://", "").replace("https://", "").split("/")[2];
 	var mode = modelist.getModeForPath(filePath).mode;
 	editor.session.setMode(mode);
 	setInterval(function() {
-		fetch('/api/edit?filename=' + window.location.href.replace("http://samuelos.samuelblue.repl.co/", "").replace("https://samuelos.samuelblue.repl.co/", "").split("/")[0] + '&pass={{pass}}', {
+		fetch('/api/edit?folder=' + folderPath + '&file=' + filePath + '&pass={{pass}}', {
 			method: 'post',
 			body: editor.getValue()
 		}).then(function(response) {
