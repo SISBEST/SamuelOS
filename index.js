@@ -142,6 +142,16 @@ app.post('/api/edit', (req, res) => {
 	}
 });
 
+app.get('/raw/:pass/:folder/:file', (req, res) => {
+	if(req.params.pass == process.env.PASS) {
+		fs.readFile('filesystem/' + req.params.folder + '/' + req.params.file, 'utf8', (err, data) => {
+			res.send(err || data);
+		});
+	} else {
+		res.render('noauth');
+	}
+});
+
 app.get('/:folder/:file', (req, res) => {
 	if(req.query.pass == process.env.PASS) {
 		fs.readFile('filesystem/' + req.params.folder + '/' + req.params.file, 'utf8', (err, data) => {

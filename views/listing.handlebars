@@ -1,6 +1,14 @@
+<img src="/folder.svg" />
 <h1>/{{folder}}</h1>
+<h2>Edit</h2>
+<img src="/file.svg" />
 {{#each files}}
 	<a class="ic" ondblclick="window.open('/{{../folder}}/{{this}}/?pass={{../pass}}', 'SamuelOS - {{this}}', 'width=800px,height=720px');">{{this}}</a>
+{{/each}}
+<h2>Download</h2>
+<img src="/download.svg" />
+{{#each files}}
+	<a class="ic" href="/raw/{{../pass}}/{{../folder}}/{{this}}">{{this}}</a>
 {{/each}}
 <br /><br />
 <form action="/api/create">
