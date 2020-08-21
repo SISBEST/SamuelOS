@@ -1,0 +1,16 @@
+{
+  "name": "SamuelOS Intranet",
+  "short_name": "SamuelOS",
+  "theme_color": "#00a1de",
+  "background_color": "#f9461c",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+	"icon": [
+		{
+			"src": "/favicon.png",
+			"sizes": "144x144",
+			"type": "image/png"
+		}
+	]
+}
