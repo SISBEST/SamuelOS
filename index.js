@@ -64,7 +64,7 @@ app.get('/public', (req, res) => {
 });
 
 app.get('/public/:file', (req, res) => {
-	fs.readFile('filesystem/hosting/' + req.params.file, 'utf8', (err, data) => {
+	fs.readFile('filesystem/hosting/' + req.params.file, (err, data) => {
 		if (err) {
 			res.send(err);
 		} else {
@@ -77,6 +77,8 @@ app.get('/app/:pkg', (req, res) => {
 	if(req.query.pass == process.env.PASS) {
 		res.render('app/' + req.params.pkg, {
 			pass: process.env.PASS,
+			apps: require('./filesystem/config/os.json').apps,
+			games: require('./filesystem/config/os.json').games,
 			layout: 'editor'
 		});
 	} else {
@@ -90,7 +92,7 @@ app.get('/api/create', (req, res) => {
 			if (err) {
 				res.status(500).send(err);
 			} else {
-				res.redirect('/?pass=' + process.env.PASS);
+				res.redirect('/folder/' + req.query.folder + '?pass=' + process.env.PASS);
 			}
 		});
 	} else {
@@ -120,7 +122,7 @@ app.post('/api/upload', (req, res) => {
 			var newpath = './filesystem/' + req.query.folder + '/' + files.file.name;
 			mv(oldpath, newpath, function (err) {
 				if (err) throw err;
-				res.redirect('/' + req.query.folder + '?pass=' + process.env.PASS);
+				res.redirect('/folder/' + req.query.folder + '?pass=' + process.env.PASS);
 			});
 		});
 	} else {
@@ -144,7 +146,10 @@ app.post('/api/edit', (req, res) => {
 
 app.get('/raw/:pass/:folder/:file', (req, res) => {
 	if(req.params.pass == process.env.PASS) {
-		fs.readFile('filesystem/' + req.params.folder + '/' + req.params.file, 'utf8', (err, data) => {
+		fs.readFile('filesystem/' + req.params.folder + '/' + req.params.file, (err, data) => {
+			if (req.params.file.split('.')[1] == 'pdf') {
+				res.contentType("application/pdf");
+			}
 			res.send(err || data);
 		});
 	} else {
@@ -154,7 +159,7 @@ app.get('/raw/:pass/:folder/:file', (req, res) => {
 
 app.get('/:folder/:file', (req, res) => {
 	if(req.query.pass == process.env.PASS) {
-		fs.readFile('filesystem/' + req.params.folder + '/' + req.params.file, 'utf8', (err, data) => {
+		fs.readFile('filesystem/' + req.params.folder + '/' + req.params.file, (err, data) => {
 			if (err) {
 				res.render('file', {
 					content: err,
