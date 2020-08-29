@@ -120,6 +120,20 @@ app.get('/api/create', (req, res) => {
 	}
 });
 
+app.get('/api/delete', (req, res) => {
+	if(req.query.pass == process.env.PASS) {
+		fs.unlink('filesystem/' + req.query.folder + '/' + req.query.filename, (err) => {
+			if (err) {
+				res.status(500).send(err);
+			} else {
+				res.redirect('/folder/' + req.query.folder + '?pass=' + process.env.PASS);
+			}
+		});
+	} else {
+		res.render('noauth');
+	}
+});
+
 app.get('/api/folder', (req, res) => {
 	if(req.query.pass == process.env.PASS) {
 		fs.mkdir('filesystem/' + req.query.folder, (err) => {
