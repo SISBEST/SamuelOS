@@ -1,0 +1,14 @@
+<style>
+	body {
+		background-image: url('{{wallpaper}}');
+	}
+</style>
+<h1>Samuel School Files</h1>
+<hr />
+<br />
+<img src="/folder.svg" />
+{{#each files}}
+	<a class="ic" ondblclick="window.open('/folder/{{this}}/?pass={{../pass}}', 'SamuelOS - {{this}}', 'width=800px,height=720px');">{{this}}</a>
+{{/each}}
+<br />
+<hr />

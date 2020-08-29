@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 	var config = require('./filesystem/config/os.json');
 	if(req.query.pass == process.env.PASS) {
 			fs.readdir('filesystem', (err, files) => {
-			res.render('home', {
+				res.render('home', {
 					files: files,
 					pass: process.env.PASS,
 					wallpaper: config.wallpaper,
@@ -24,6 +24,16 @@ app.get('/', (req, res) => {
 					games: config.games
 				});
 			});
+	} else if(req.query.pass == process.env.GUESTPASS) {
+		fs.readdir('filesystem', (err, files) => {
+			res.render('guest', {
+				files: files,
+				pass: process.env.GUESTPASS,
+				wallpaper: config.wallpaper,
+				apps: config.apps,
+				games: config.games
+			});
+		});
 	} else {
 		res.render('noauth', {
 			wallpaper: config.loginscreen || config.wallpaper
@@ -38,6 +48,15 @@ app.get('/folder/:name', (req, res) => {
 				res.render('listing', {
 					files: files,
 					pass: process.env.PASS,
+					layout: 'editor',
+					folder: req.params.name
+				});
+			});
+	} else if(req.query.pass == process.env.GUESTPASS) {
+		fs.readdir('filesystem/' + req.params.name, (err, files) => {
+				res.render('guestl', {
+					files: files,
+					pass: process.env.GUESTPASS,
 					layout: 'editor',
 					folder: req.params.name
 				});
@@ -79,7 +98,8 @@ app.get('/app/:pkg', (req, res) => {
 			pass: process.env.PASS,
 			apps: require('./filesystem/config/os.json').apps,
 			games: require('./filesystem/config/os.json').games,
-			layout: 'editor'
+			layout: 'editor',
+			mid: req.query.mid || ''
 		});
 	} else {
 		res.render('noauth');
@@ -145,7 +165,7 @@ app.post('/api/edit', (req, res) => {
 });
 
 app.get('/raw/:pass/:folder/:file', (req, res) => {
-	if(req.params.pass == process.env.PASS) {
+	if(req.params.pass == process.env.PASS || req.params.pass == process.env.GUESTPASS) {
 		fs.readFile('filesystem/' + req.params.folder + '/' + req.params.file, (err, data) => {
 			if (req.params.file.split('.')[1] == 'pdf') {
 				res.contentType("application/pdf");
