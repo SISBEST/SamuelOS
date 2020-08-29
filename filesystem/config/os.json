@@ -12,6 +12,10 @@
 			"pkg": "notes"
 		},
 		{
+			"name": "SamuelWeb",
+			"pkg": "web"
+		},
+		{
 			"name": "Timer",
 			"pkg": "timer"
 		}
